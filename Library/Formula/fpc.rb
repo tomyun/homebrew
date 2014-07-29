@@ -26,6 +26,14 @@ class Fpc < Formula
     bin.install_symlink fpc_lib/"ppcx64"
   end
 
+  def caveats
+    s = <<-EOS.undent
+      You may need to create/update a configuration file:
+        #{bin}/fpcmkcfg -d basepath=#{fpc_lib} -o ~/.fpc.cfg
+    EOS
+    s
+  end
+
   test do
     hello = <<-EOS.undent
       program Hello;
