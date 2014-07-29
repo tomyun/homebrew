@@ -43,6 +43,7 @@ class Fpc < Formula
     EOS
     (testpath/"hello.pas").write(hello)
     system "#{bin}/fpc", "hello.pas"
-    assert_equal "Hello Homebrew", `./hello`.strip
+    assert_equal "Hello Homebrew\n", `./hello`
+    assert_equal 0, $?.exitstatus
   end
 end
