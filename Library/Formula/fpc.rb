@@ -17,6 +17,7 @@ class Fpc < Formula
     fpc_compiler = fpc_bootstrap/"ppcuniversal"
     system "make", "build", "PP=#{fpc_compiler}"
     system "make", "install", "PP=#{fpc_compiler}", "PREFIX=#{prefix}"
+    system "make", "sourceinstall", "PP=#{fpc_compiler}", "PREFIX=#{prefix}"
 
     bin.install_symlink lib/"#{name}/#{version}/ppcx64"
   end
