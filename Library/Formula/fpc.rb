@@ -10,6 +10,10 @@ class Fpc < Formula
     sha1 "1476a19ad7f901868fcbe3dc49e6d46a5865f722"
   end
 
+  def fpc_lib
+    lib/"#{name}/#{version}"
+  end
+
   def install
     fpc_bootstrap = buildpath/"bootstrap"
     resource("bootstrap").stage { fpc_bootstrap.install Dir["*"] }
@@ -19,7 +23,7 @@ class Fpc < Formula
     system "make", "install", "PP=#{fpc_compiler}", "PREFIX=#{prefix}"
     system "make", "sourceinstall", "PP=#{fpc_compiler}", "PREFIX=#{prefix}"
 
-    bin.install_symlink lib/"#{name}/#{version}/ppcx64"
+    bin.install_symlink fpc_lib/"ppcx64"
   end
 
   test do
